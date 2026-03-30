@@ -7,6 +7,7 @@
 #include "GL/glew.h"
 #include "GLFW/glfw3.h"
 #include "graphics/GraphicsAPI.h"
+#include "render/RenderQueue.h"
 
 namespace ENG
 {
@@ -77,6 +78,11 @@ void Engine::Run()
 
         m_application->Update(deltaTime);
 
+        m_graphicsAPI.SetClearColor(1.0F, 1.0F, 1.0F, 1.0F);
+        m_graphicsAPI.ClearBuffers();
+
+        m_renderQueue.Draw(m_graphicsAPI);
+
         glfwSwapBuffers(m_window);
     }
 }
@@ -109,6 +115,11 @@ InputManager &Engine::GetInputManager()
 GraphicsAPI &Engine::GetGraphicsAPI()
 {
     return m_graphicsAPI;
+}
+
+RenderQueue &Engine::GetRenderQueue()
+{
+    return m_renderQueue;
 }
 
 }  // namespace ENG

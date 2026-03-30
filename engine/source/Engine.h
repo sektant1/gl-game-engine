@@ -4,6 +4,7 @@
 
 #include "graphics/GraphicsAPI.h"
 #include "input/InputManager.h"
+#include "render/RenderQueue.h"
 
 struct GLFWwindow;
 
@@ -30,6 +31,7 @@ public:
     Application  *GetApplication();
     InputManager &GetInputManager();
     GraphicsAPI  &GetGraphicsAPI();
+    RenderQueue  &GetRenderQueue();
 
 private:
     std::unique_ptr<Application>          m_application;
@@ -37,6 +39,7 @@ private:
     GLFWwindow                           *m_window = nullptr;
     InputManager                          m_inputManager;
     GraphicsAPI                           m_graphicsAPI;
+    RenderQueue                           m_renderQueue;
 };
 
 }  // namespace ENG

@@ -2,7 +2,7 @@
 
 #include "Game.h"
 
-#include "GLFW/glfw3.h"
+#include <GLFW/glfw3.h>
 
 bool Game::Init()
 {
@@ -36,8 +36,8 @@ bool Game::Init()
     auto  shaderProgram = graphicsAPI.CreateShaderProgram(vertexShaderSource, fragmentShaderSource);
     m_material.SetShaderProgram(shaderProgram);
 
-    std::vector<float> vertices = {0.5F,  0.5F,  0.0F, 1.0F, 0.0F, 0.0F, -0.5F, 0.5F,  0.0F, 0.0F, 1.0F, 0.0F,
-                                   -0.5F, -0.5F, 0.0F, 0.0F, 0.0F, 1.0F, 0.5F,  -0.5F, 0.0F, 1.0F, 1.0F, 0.0F};
+    std::vector<float> vertices = {0.5f,  0.5f,  0.0f, 1.0f, 0.0f, 0.0f, -0.5f, 0.5f,  0.0f, 0.0f, 1.0f, 0.0f,
+                                   -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 0.5f,  -0.5f, 0.0f, 1.0f, 1.0f, 0.0f};
 
     std::vector<unsigned int> indices = {0, 1, 2, 0, 2, 3};
 
@@ -59,8 +59,15 @@ void Game::Update(float deltaTime)
     auto &input = ENG::Engine::GetInstance().GetInputManager();
 
     if (input.IsKeyPressed(GLFW_KEY_A)) {
-        std::cout << "[A] Button is pressed" << "\n";
+        std::cout << "[A] button is pressed" << std::endl;
     }
+
+    ENG::RenderCommand command;
+    command.material = &m_material;
+    command.mesh     = m_mesh.get();
+
+    auto &renderQueue = ENG::Engine::GetInstance().GetRenderQueue();
+    renderQueue.Submit(command);
 }
 
 void Game::Destroy() {}

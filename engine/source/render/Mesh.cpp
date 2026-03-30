@@ -7,10 +7,9 @@ namespace ENG
 {
 
 Mesh::Mesh(const VertexLayout &layout, const std::vector<float> &vertices, const std::vector<uint32_t> &indices)
-    : m_vertexLayout(layout)
-    , m_vertexCount((vertices.size() * sizeof(float)) / m_vertexLayout.stride)
-    , m_indexCount(indices.size())
 {
+    m_vertexLayout = layout;
+
     auto &graphicsAPI = Engine::GetInstance().GetGraphicsAPI();
 
     m_VBO = graphicsAPI.CreateVertexBuffer(vertices);
@@ -36,12 +35,15 @@ Mesh::Mesh(const VertexLayout &layout, const std::vector<float> &vertices, const
     glBindVertexArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+    m_vertexCount = (vertices.size() * sizeof(float)) / m_vertexLayout.stride;
+    m_indexCount  = indices.size();
 }
 
 Mesh::Mesh(const VertexLayout &layout, const std::vector<float> &vertices)
-    : m_vertexLayout(layout)
-    , m_vertexCount((vertices.size() * sizeof(float)) / m_vertexLayout.stride)
 {
+    m_vertexLayout = layout;
+
     auto &graphicsAPI = Engine::GetInstance().GetGraphicsAPI();
 
     m_VBO = graphicsAPI.CreateVertexBuffer(vertices);
@@ -63,6 +65,8 @@ Mesh::Mesh(const VertexLayout &layout, const std::vector<float> &vertices)
 
     glBindVertexArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+    m_vertexCount = (vertices.size() * sizeof(float)) / m_vertexLayout.stride;
 }
 
 void Mesh::Bind()

@@ -80,6 +80,16 @@ GLuint GraphicsAPI::CreateIndexBuffer(const std::vector<uint32_t> &indices)
     return EBO;
 }
 
+void GraphicsAPI::SetClearColor(float r, float g, float b, float a)
+{
+    glClearColor(r, g, b, a);
+}
+
+void GraphicsAPI::ClearBuffers()
+{
+    glClear(GL_COLOR_BUFFER_BIT);
+}
+
 void GraphicsAPI::BindShaderProgram(ShaderProgram *shaderProgram)
 {
     if (shaderProgram) {
@@ -104,7 +114,7 @@ void GraphicsAPI::BindMesh(Mesh *mesh)
 void GraphicsAPI::DrawMesh(Mesh *mesh)
 {
     if (mesh) {
-        mesh->Bind();
+        mesh->Draw();
     }
 }
 
