@@ -1,4 +1,6 @@
 #pragma once
+#include <memory>
+
 #include "ENG.h"
 #include "render/Material.h"
 
@@ -10,5 +12,6 @@ public:
     void Destroy() override;
 
 private:
-    ENG::Material m_material;
+    ENG::Material              m_material;
+    std::unique_ptr<ENG::Mesh> m_mesh;
 };
