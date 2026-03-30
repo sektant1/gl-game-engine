@@ -24,3 +24,9 @@ include_directories(engine/source)
 target_link_libraries(${PROJECT_NAME} 
     Engine
 )
+
+configure_file(
+    "scripts/build_config.sh"   
+    "${CMAKE_BINARY_DIR}/build_config.sh"  
+    @ONLY
+)
