@@ -1,0 +1,28 @@
+#pragma once
+
+#include <string>
+#include <unordered_map>
+
+#include <GL/glew.h>
+
+namespace ENG
+{
+class ShaderProgram
+{
+public:
+    ShaderProgram()                                 = delete;
+    ShaderProgram(const ShaderProgram &)            = delete;
+    ShaderProgram &operator=(const ShaderProgram &) = delete;
+    explicit ShaderProgram(GLuint shaderProgramID);
+    ~ShaderProgram();
+
+    void  Bind();
+    GLint GetUniformLocation(const std::string &name);
+    void  SetUnitform(const std::string &name, float value);
+
+private:
+    std::unordered_map<std::string, GLint> m_uniformLocationCache;
+    GLuint                                 m_shaderProgramID = 0;
+};
+
+}  // namespace ENG

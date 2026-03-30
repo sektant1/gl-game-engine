@@ -6,6 +6,7 @@
 #include "Application.h"
 #include "GL/glew.h"
 #include "GLFW/glfw3.h"
+#include "graphics/GraphicsAPI.h"
 
 namespace ENG
 {
@@ -103,6 +104,11 @@ Application *Engine::GetApplication()
 InputManager &Engine::GetInputManager()
 {
     return m_inputManager;
+}
+
+GraphicsAPI &Engine::GetGraphicsAPI()
+{
+    return m_graphicsAPI;
 }
 
 }  // namespace ENG

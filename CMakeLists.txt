@@ -12,6 +12,7 @@ set(PROJECT_SOURCE_FILES
 )
 # Add the application
 include_directories(source)
+include_directories(engine/thirdparty/glew/include)
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCE_FILES})
 
 
