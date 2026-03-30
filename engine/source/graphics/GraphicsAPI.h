@@ -4,6 +4,7 @@
 
 #include "GL/glew.h"
 #include "graphics/ShaderProgram.h"
+#include "render/Material.h"
 
 namespace ENG
 {
@@ -17,5 +18,6 @@ public:
                                                        const std::string &fragmentSource);
 
     void BindShaderProgram(ShaderProgram *shaderProgram);
+    void BindMaterial(Material *material);
 };
 }  // namespace ENG

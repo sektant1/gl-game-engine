@@ -34,6 +34,7 @@ bool Game::Init()
 
     auto &graphicsAPI   = ENG::Engine::GetInstance().GetGraphicsAPI();
     auto  shaderProgram = graphicsAPI.CreateShaderProgram(vertexShaderSource, fragmentShaderSource);
+    m_material.SetShaderProgram(shaderProgram);
 
     return true;
 }

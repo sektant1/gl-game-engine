@@ -3,6 +3,7 @@
 #include "graphics/GraphicsAPI.h"
 
 #include "graphics/ShaderProgram.h"
+#include "render/Material.h"
 
 namespace ENG
 {
@@ -58,7 +59,16 @@ std::shared_ptr<ShaderProgram> GraphicsAPI::CreateShaderProgram(const std::strin
 
 void GraphicsAPI::BindShaderProgram(ShaderProgram *shaderProgram)
 {
-    shaderProgram->Bind();
+    if (shaderProgram) {
+        shaderProgram->Bind();
+    }
+}
+
+void GraphicsAPI::BindMaterial(Material *material)
+{
+    if (material) {
+        material->Bind();
+    }
 }
 
 }  // namespace ENG
