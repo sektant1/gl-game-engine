@@ -2,6 +2,8 @@
 
 #include "Game.h"
 
+#include "GLFW/glfw3.h"
+
 bool Game::Init()
 {
     return true;
@@ -9,7 +11,11 @@ bool Game::Init()
 
 void Game::Update(float deltaTime)
 {
-    std::cout << "Current delta: " << deltaTime << "\n";
+    auto &input = ENG::Engine::GetInstance().GetInputManager();
+
+    if (input.IsKeyPressed(GLFW_KEY_A)) {
+        std::cout << "[A] Button is pressed" << "\n";
+    }
 }
 
 void Game::Destroy() {}
